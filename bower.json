@@ -1,0 +1,27 @@
+{
+  "name": "brief_url_frontend",
+  "authors": [
+    "Alexandru Efimov <alex.efimov@sendgrid.com>"
+  ],
+  "description": "brief_url_frontend",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7",
+    "underscore": "~1.8.3",
+    "angular-route": "~1.4.7",
+    "angular-resource": "~1.4.7"
+  }
+}

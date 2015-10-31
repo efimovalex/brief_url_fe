@@ -1,0 +1,7 @@
+<form class="form-inline col-md-3 center-block" name="urlForm" ng-controller="urlController">
+  <div class="form-group">
+    <label for="redirect_to">Redirect to</label>
+    <input type="url" class="form-control" ng-model="url.redirect" id="redirect_to" placeholder="www.google.com" required>
+  </div>
+  <button class="btn btn-danger" ng-click="add(url)">Add</button>
+</form>

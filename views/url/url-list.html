@@ -1,0 +1,29 @@
+<!-- url-list.html -->
+<div class="page-header text-center">
+    <h1>URLs</h1>
+
+    <p>{{ message }}</p>
+</div>
+<div class="center" ng-include="'views/url/_form.html'"></div>
+</br>
+</br>
+<div>
+  <table class="table table-condensed table-hover">
+    <tr>
+      <td>URL</td>
+      <td>Redirect</td>
+      <td>Expiration Date</td>
+      <td>Active</td>
+      <td></td>
+    </tr>
+    <tr ng-repeat="url in urls">
+      <td>{{host}}/{{url.Route}}</td>
+      <td>{{url.Redirect}}</td>
+      <td>{{url.ExpiresAt | date: fullDate}}</td>
+      <td>{{url.Active | yesNo}}</td>
+      <td>
+        <a class="btn btn-danger" ng-really-message="Are you sure?" ng-really-click="delete(url)">Delete</a>
+      </td>
+    </tr>
+  </table>
+</div>
