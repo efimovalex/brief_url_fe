@@ -1,4 +1,4 @@
-app.controller('urlController',['$scope', '$route', '$location', 'Url', function($scope, $route, $location, Url) {
+app.controller('UrlController',['$scope', '$route', '$location', 'Url', function($scope, $route, $location, Url) {
     $scope.message = 'These are your URLs';
 
     $scope.host = $location.host()
@@ -8,7 +8,6 @@ app.controller('urlController',['$scope', '$route', '$location', 'Url', function
     }
 
     $scope.urls = Url.query();
-    console.log($scope.urls);
     $scope.url =  new Url();
 
     $scope.delete = function(url) { 

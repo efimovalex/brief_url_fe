@@ -8,7 +8,7 @@ usage on Dev Environment
 
 ####Basic Usage
 
-Clone Backend project
+RUN Backend project
 
 ```sh
 go get github.com/efimovalex/brief_url

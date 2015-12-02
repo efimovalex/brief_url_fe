@@ -1,6 +1,50 @@
 <!-- contact.html -->
     <div class="jumbotron text-center">
         <h1>Contact Page</h1>
-
+        <div class="sendgrid-subscription-widget" data-token="V5BLnkrXpDrC1NHNYIZYxXnZwaCaJGRaroD2yRwa0p1TyF3fZmqWKrlNbp8b5dLP"></div>
         <p>{{ message }}</p>
+        <div class="sendgrid-subscription-widget" data-token="J6QncyHhUsvuBUxR2rOY4VagZXQWI1H3J57EPuRv%2BnzgiPNveZcxfQ4EJTDljwMH"><label><span>Company</span><input type="text" name="b"></label><label><span>Name</span><input type="text" name="a"></label></div>
+        <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://s3.amazonaws.com/subscription-cdn/0.2/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}
+
+          if (typeof threads != 'undefined')
+          {
+            var widgets = document.getElementsByClassName("sendgrid-subscription-widget");
+            for(var i = 0; i < widgets.length; i++)
+            {
+              (function (_widget) {
+                _widget.addEventListener("success", function(e)
+                {
+                  var fields = e.srcElement.getElementsByTagName("input");
+                  var email = "";
+
+                  for(var j = 0; j < fields.length; j++)
+                  {
+                    if(fields[j].name == "email")
+                    {
+                      email = fields[j].value;
+                      break;
+                    }
+                  }
+
+                  var eventTrack = {
+                    id: _widget.getAttribute("data-token"),
+                    email: email
+                  }
+
+                  if ((typeof eventTrack.id != 'undefined') || (typeof eventTrack.email != 'undefined'))
+                  {
+                    threads.track('Subscribed to Newsletter', eventTrack);
+                  }
+                });
+              })(widgets[i]);
+            }
+          } else {
+            console.log("threads.js library is not available")
+          }
+        }(document, "script", "sendgrid-subscription-widget-js");
+
+        </script>
     </div>
+
+    <!-- document.getElementsByClassName("sendgrid-subscription-widget")[0].addEventListener("sent", function(e) { alert(e); }); -->
