@@ -1,28 +1,29 @@
 <!-- url-list.html -->
-<div class="page-header text-center">
+<div class="page-header text-center" ng-controller="UrlController as vm">
     <h1>URLs</h1>
 
-    <p>{{ message }}</p>
+    <p>{{ vm.message }}</p>
 </div>
 <div class="center" ng-include="'views/url/_form.html'"></div>
 </br>
 </br>
 <div>
   <table class="table table-condensed table-hover">
-    <tr>
+    <th>
       <td>URL</td>
       <td>Redirect</td>
       <td>Expiration Date</td>
       <td>Active</td>
       <td></td>
-    </tr>
-    <tr ng-repeat="url in urls">
-      <td>{{host}}/{{url.Route}}</td>
-      <td>{{url.Redirect}}</td>
-      <td>{{url.ExpiresAt | date: fullDate}}</td>
-      <td>{{url.Active | yesNo}}</td>
+    </th>
+
+    <tr ng-repeat="url in vm.urls">
+      <td>{{host}}/{{url.route}}</td>
+      <td>{{url.redirect}}</td>
+      <td>{{url.expiresAt | date: fullDate}}</td>
+      <td yes-no={{url.active}}></td>
       <td>
-        <a class="btn btn-danger" ng-really-message="Are you sure?" ng-really-click="delete(url)">Delete</a>
+        <a class="btn btn-danger" ng-really-message="Are you sure?" ng-really-click="vm.delete(url)">Delete</a>
       </td>
     </tr>
   </table>

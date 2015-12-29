@@ -1,66 +1,77 @@
 <!-- index.html -->
     <!DOCTYPE html>
-     <!-- define angular app -->
-    <html ng-app="briefURLApp">
+    <html>
     <head>
       <!-- SCROLLS -->
       <!-- load bootstrap and fontawesome via CDN -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" />
       <base href="/">
       <!-- SPELLS -->
-      <!-- load angular and angular route via CDN -->
       <script src="bower_components/jquery/dist/jquery.min.js"></script>
       <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-route/angular-route.js"></script>
-      <script src="bower_components/angular-resource/angular-resource.js"></script>
-      <script type="text/javascript">
-        !function(o,n){function i(o){return function(){return threads.push({m:o,args:Array.prototype.slice.call(arguments)}),threads}}var threads=o.threads=o.threads||[];if(!threads.initialize){if(threads.invoked)return void(o.console&&console.error&&console.error("threads snippet included twice."));threads.invoked=!0;for(var c=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"],p=0;p<c.length;p++){var l=c[p];threads[l]=i(l)}
-        threads.load=function(o){var i=n.createElement("script"),c="https:"===n.location.protocol?"https://":"http://";i.type="text/javascript",i.async=!0,i.src=c+"cdn.threads.io/analytics/"+o+"/threads.min.js";var p=n.getElementsByTagName("script")[0];p.parentNode.insertBefore(i,p)},threads.SNIPPET_VERSION="1.1.0",
-        threads.load("TOQuBf"),
-        threads.identify('userid', {emailaddresstest: 'test@ington.com', Nametest: 'threads Test' }),
-        threads.page()
-        
-      }}(window,document);
+      <script src="bower_components/angular/angular.min.js"></script>
+      <script src="bower_components/angular-route/angular-route.min.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+      <script src="bower_components/satellizer/satellizer.min.js"></script>
       </script>
     </head>
-    <body ng-controller="MainController">
+    <body ng-app="briefURLApp">
 
         <!-- HEADER AND NAVBAR -->
-        <header>
-            <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">BriefURL</a>
-                </div>
+        <div ng-controller="NavController as NavVm">
+          <header>
+              <nav class="navbar navbar-inverse">
+              <div class="container">
+                  <div class="navbar-header">
+                      <a class="navbar-brand" href="/">BriefURL</a>
+                  </div>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="/url"><i class="fa fa-link"></i> URLs</a></li>
-                    <li><a href="/about"><i class="fa fa-shield"></i> About</a></li>
-                    <li><a href="/contact"><i class="fa fa-comment"></i> Contact</a></li>
-                </ul>
-            </div>
-            </nav>
-        </header>
+                  <ul class="nav navbar-nav navbar-right" ng-if="!NavVm.isAuthenticated()">
+                      <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+                      <li><a ui-sref="auth"><i class="fa fa-sign-in"></i> Login</a></li>
+                      <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+                      <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
+                      <li><a ui-sref="signup"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right" ng-if="NavVm.isAuthenticated()">
+                      <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+                      <li><a ui-sref="url"><i class="fa fa-link"></i> URLs</a></li>
+                      <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+                      <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
+                      <li ng-controller="AuthController as AuthVm"><a ng-click="AuthVm.logout()" ui-sref="auth"><i class="fa fa-sign-out"></i> Logout</a></li>
+                  </ul>
+              </div>
+              </nav>
+          </header>
+        </div>
 
         <!-- MAIN CONTENT AND INJECTED VIEWS -->
         <div id="main" class="container-fluid">
             <!-- angular templating -->
             <!-- this is where content will be injected -->
-             <div ng-view></div>
+             <div ui-view></div>
         </div>
           <!-- Modules -->
         <script src="js/app.js"></script>
 
         <!-- Controllers -->
-        <script src="js/controllers/main.js"></script>
-        <script src="js/controllers/contact.js"></script>
-        <script src="js/controllers/about.js"></script>
-        <script src="js/controllers/url.js"></script>
+        <script src="js/controllers/main.controller.js"></script>
+        <script src="js/controllers/navigation.controller.js"></script>
+        <script src="js/controllers/contact.controller.js"></script>
+        <script src="js/controllers/about.controller.js"></script>
+        <script src="js/controllers/url.controller.js"></script>
+        <script src="js/controllers/signup.controller.js"></script>
+        <script src="js/controllers/auth.controller.js"></script>
 
         <!-- Services -->
         <script src="js/services/url.js"></script>
+        <script src="js/services/user.js"></script>
+
+        <!-- Directives & filters -->
+        <script src="js/really-click.directive.js"></script>
+        <script src="js/yes-or-no.directive.js"></script>
     </body>
     </html>

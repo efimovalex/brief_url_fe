@@ -1,0 +1,9 @@
+<form class="form-inline col-md-3 center-block" name="userForm" ng-controller="AuthController">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" ng-model="user.email" id="email" required>
+    <label for="password">Password</label>
+    <input type="password" class="form-control" ng-model="user.password" id="password" required>
+  </div>
+  <button class="btn btn-danger" ng-click="login(user)">Log In</button>
+</form>
